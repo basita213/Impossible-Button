@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>the Button</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      font-family: sans-serif;
+    }
+
+    #trollBtn {
+      position: absolute;
+      width: 80px;
+      height: 40px;
+      background-color: #3498db;
+      border: none;
+      border-radius: 6px;
+      cursor: default;
+    }
+
+    #trollBtn:hover {
+      animation: move 0.1s linear forwards;
+    }
+
+    @keyframes move {
+      to {
+        left: calc(100% * var(--randX));
+        top: calc(100% * var(--randY));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Click the button!</h1>
+  <button id="trollBtn"></button>
+
+  <script>
+    const button = document.getElementById("trollBtn");
+    const audio = document.getElementById("clickSound");
+
+    button.style.left = "50%";
+    button.style.top = "50%";
+
+    button.addEventListener("mouseover", () => {
+      const randX = Math.random();
+      const randY = Math.random();
+      button.style.setProperty('--randX', randX);
+      button.style.setProperty('--randY', randY);
+      button.style.left = `${randX * 90}%`;
+      button.style.top = `${randY * 90}%`;
+    });
+
+    button.addEventListener("click", () => {
+      alert("You actually clicked it?");
+    });
+  </script>
+
+</body>
+</html>
